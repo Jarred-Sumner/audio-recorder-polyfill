@@ -17,7 +17,7 @@ function error (method) {
   return event
 }
 
-let context, processor
+let processor
 
 /**
  * Audio Recorder with MediaRecorder API.
@@ -31,7 +31,7 @@ class MediaRecorder {
   /**
    * @param {MediaStream} stream The audio stream to record.
    */
-  constructor (stream) {
+  constructor (stream, context) {
     /**
      * The `MediaStream` passed into the constructor.
      * @type {MediaStream}
@@ -56,6 +56,8 @@ class MediaRecorder {
         recorder.em.dispatchEvent(new Event('stop'))
       }
     })
+    
+    thsi.context = context;
   }
 
   /**
@@ -78,10 +80,9 @@ class MediaRecorder {
     }
 
     this.state = 'recording'
+    
+    const context = this.context
 
-    if (!context) {
-      context = new AudioContext()
-    }
     this.clone = this.stream.clone()
     let input = context.createMediaStreamSource(this.clone)
 
