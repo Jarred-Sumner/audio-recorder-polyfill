@@ -57,7 +57,7 @@ class MediaRecorder {
       }
     })
     
-    thsi.context = context;
+    this.context = context;
   }
 
   /**
