@@ -189,7 +189,7 @@ class MediaRecorder {
       return this.em.dispatchEvent(error('requestData'))
     }
 
-    return this.encoder.postMessage(['dump', context.sampleRate])
+    return this.encoder.postMessage(['dump', this.context.sampleRate])
   }
 
   /**
